@@ -98,6 +98,10 @@ nav ul li a:hover:after {
     width: 10rem;
 }
 
+#searchbar:active {
+    border: 1px solid white;
+}
+
 @media (max-width: 800px) {
     nav ul li {
         display: none;
