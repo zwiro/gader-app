@@ -98,7 +98,8 @@ nav ul li a:hover:after {
     width: 10rem;
 }
 
-#searchbar:active {
+#searchbar:active,
+#searchbar:focus {
     border: 1px solid white;
 }
 
