@@ -7,13 +7,14 @@ function escapeRegex(text) {
 
 module.exports.index = async (req, res) => {
     const page = parseInt(req.params.page);
+    const allPosts = await Post.find({})
     if (req.query.search) {
         const regex = new RegExp(escapeRegex(req.query.search), 'gi');
         const posts = await Post.find({ text: regex }).sort({ _id: -1 }).skip((page - 1) * 10).limit(10).populate('author').populate('comments');
-        res.render('posts/index', { posts, page });
+        res.render('posts/index', { allPosts, posts, page });
     } else {
         const posts = await Post.find({}).sort({ _id: -1 }).skip((page - 1) * 10).limit(10).populate('author').populate('comments');
-        res.render('posts/index', { posts, page });
+        res.render('posts/index', { allPosts, posts, page });
     }
 }
 

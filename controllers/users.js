@@ -66,30 +66,42 @@ module.exports.renderUserProfile = async (req, res) => {
     const { id } = req.params;
     const page = parseInt(req.params.page);
     const user = await User.findById(id);
+    const allPosts = await Post.find({ author: id });
     const posts = await Post.find({ author: id }).sort({ _id: -1 }).skip((page - 1) * 10).limit(10);
     const comments = await Comment.find({ author: id }).sort({ _id: -1 }).skip((page - 1) * 10).limit(10);
-    res.render('users/show', { user, posts, comments, page })
+    res.render('users/show', { user, posts, allPosts, comments, page })
 };
 
 module.exports.renderUserProfileComments = async (req, res) => {
     const { id } = req.params;
     const page = parseInt(req.params.page);
     const user = await User.findById(id);
+    const allComments = await Comment.find({ author: id });
     const comments = await Comment.find({ author: id }).sort({ _id: -1 }).skip((page - 1) * 10).limit(10);
-    res.render('users/showComments', { user, comments, page });
+    res.render('users/showComments', { user, allComments, comments, page });
 };
 
 module.exports.renderUserProfileLikes = async (req, res) => {
     const { id } = req.params;
     const page = parseInt(req.params.page);
-    const user = await User.findById(id).sort({ _id: -1 }).skip((page - 1) * 10).limit(10).populate({
+    const user = await User.findById(id).populate({
         path: 'likes',
+        options: {
+            sort: { id: -1 }, skip: (page - 1) * 10, limit: 10
+        },
         populate: {
-            path: 'author'
+            path: 'author',
         }
     })
-    const likedPosts = user.likes
-    res.render('users/showLikes', { user, likedPosts, page })
+    const likedPosts = user.likes;
+    const allPosts = await User.findById(id).populate({
+        path: 'likes',
+        populate: {
+            path: 'author',
+        }
+    })
+    const allLikes = allPosts.likes;
+    res.render('users/showLikes', { user, allLikes, likedPosts, page })
 };
 
 module.exports.renderUserEdit = async (req, res) => {

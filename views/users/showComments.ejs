@@ -36,7 +36,7 @@
 
     < Previous page</a>
       <% } %>
-      <% if (page*10 < comments.length) { %>
+      <% if (page*10 < allComments.length) { %>
       <a href="/user/<%= user._id %>/comments/page/<%= page + 1 %>">Next page ></a>
       <% } %>
 </div>

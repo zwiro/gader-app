@@ -16,14 +16,14 @@
     <div class="post-wrapper">
       <div class="post-header">
         <div class="post-author">
-          <% if (like.author.image) { %>
+          <% if (like.author.image.length) { %>
           <a href="/user/<%= like.author._id %>">
             <% like.author.image.forEach(function(img, i) { %>
             <img src="<%= img.avatar %>" alt="Post author's avatar" id="user-avatar">
             <% }) %>
           </a>
           <% } else { %>
-          <a href="/user/<%= like.author._id %>"><img src="/images/placeholder.svg" alt="" id="user-avatar"></a>
+          <a href="/user/<%= like.author._id %>"><img src="/images/placeholder.svg" alt="User's avatar" id="user-avatar"></a>
           <% } %>
           <a href="/user/<%= like.author._id %>">
             <%= like.author.username %>
@@ -59,7 +59,7 @@
 
     < Previous page</a>
       <% } %>
-      <% if (page*10 < likedPosts.length) { %>
+      <% if (page*10 < allLikes.length) { %>
       <a href="/user/<%= user._id %>/liked/page/<%= page + 1 %>">Next page ></a>
       <% } %>
 </div>
