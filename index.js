@@ -42,7 +42,7 @@ app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(mongoSanitize({
     replaceWith: '_'
-}))
+}));
 
 const secret = process.env.SECRET || 'thisshouldbeabettersecret!';
 
@@ -141,7 +141,7 @@ app.get('/', (req, res) => {
 })
 
 app.all('*', (req, res, next) => {
-    next(new ExpressError('Page Not Found', 404))
+    next(new ExpressError('Page Not Found', 404));
 })
 
 app.use((err, req, res, next) => {
@@ -151,8 +151,9 @@ app.use((err, req, res, next) => {
         res.status(statusCode).render('error', { err })
     } else {
         req.flash('error', 'Something went wrong!');
-        res.redirect('/posts/page/1')
+        res.redirect('/posts/page/1');
     }
+    next();
 })
 
 app.listen(PORT, () => console.log(`Serving on port ${PORT}`));

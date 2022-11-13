@@ -2,7 +2,6 @@ const User = require('../models/user')
 const Post = require('../models/post')
 const Comment = require('../models/comment');
 const { cloudinary } = require('../cloudinary');
-const post = require('../models/post');
 
 module.exports.renderRegister = (req, res) => {
     res.render('users/register');

@@ -56,7 +56,6 @@ if (document.body.contains(document.querySelector('form'))) {
             }
         })
     }
-
     function clearMsg() {
         inputs.forEach(input => {
             if (input.parentElement.lastChild.tagName === 'P') {
