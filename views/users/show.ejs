@@ -31,13 +31,13 @@
       <% } %>
       <div class="post-stats">
         <ul>
-          <li><a href="/posts/<%= post._id %>">Comment (<%= post.comments.length %>)
-            </a></li>
+          <li><a href="/posts/<%= post._id %>"><img src="/images/comment-solid.svg" alt="Comment icon" id="comment-icon">
+              Comment (<%= post.comments.length %>) </a></li>
           <li>
             <form action="/posts/<%=post._id%>?_method=PATCH" method="POST">
               <% if (currentUser) {%>
-              <button id="like-button" <% if (currentUser.likes.includes(post._id)) {
-                                                    %> style="color:#D4D6B9" <% } %>>Like
+              <button id="like-button" <% if (currentUser.likes.includes(post._id)) { %> style="color:#D4D6B9" <% } %>><img src="<% if ((currentUser.likes.includes(post._id))) { %>
+                                                                 /images/heart-solid.svg" <% } else { %> /images/heart-regular.svg" <% } %> alt="Heart icon" id="heart-icon"> Like
                 (<%= post.likes %>)
               </button>
               <% } %>
@@ -55,7 +55,7 @@
 
     < Previous page</a>
       <% } %>
-      <% if (page < posts.length) { %>
+      <% if (page*10 < posts.length) { %>
       <a href="/user/<%= user._id %>/page/<%= page + 1 %>">Next page ></a>
       <% } %>
 </div>
