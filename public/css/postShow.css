@@ -1,0 +1,102 @@
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+button,
+#edit-button {
+    background-color: #383B53;
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.75rem;
+    border: 1px solid #383B53;
+}
+
+button:hover,
+#edit-button:hover {
+    cursor: pointer;
+    color: #D4D6B9;
+    background-color: rgb(50, 33, 58);
+    border: 1px solid #383B53;
+}
+
+h2 {
+    margin-block: 1rem;
+}
+
+#comment-form,
+.comments-wrapper {
+    border: 1px solid #383B53;
+    border-radius: 0.5rem;
+    padding: 5rem;
+    margin-block: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form textarea {
+    background-color: #383B53;
+    border: 1px solid #D4D6B9;
+    width: 100%;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    word-wrap: break-word;
+}
+
+.comments-wrapper>div {
+    border: 1px solid #D4D6B9;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-block: 1rem;
+    min-width: 20rem;
+}
+
+#delete-comment-button {
+    padding: 0.25rem;
+}
+
+.comment-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.comment-content>div {
+    display: flex;
+}
+
+.comment-content>form {
+    margin-left: auto;
+}
+
+.comment-text {
+    padding-top: 0.5rem;
+    color: #D4D6B9;
+}
+
+.comment-author {
+    font-weight: 700;
+}
+
+.comment-author:hover {
+    color: #D4D6B9;
+}
+
+.comment-date {
+    font-weight: 200;
+    font-size: 0.75rem;
+    margin-left: auto;
+}
+
+#like-button {
+    background-color: unset;
+    border: unset;
+    padding: unset;
+    border-radius: unset;
+}
+
+.login-message {
+    text-align: center;
+}

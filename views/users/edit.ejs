@@ -1,0 +1,51 @@
+<link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/css/postShow.css">
+<link rel="stylesheet" href="/css/form.css">
+<link rel="stylesheet" href="/css/userEdit.css">
+<% layout('layouts/boilerplate')%>
+
+
+<form action="/user/<%= user._id %>?_method=PATCH" method="post" novalidate enctype="multipart/form-data">
+  <div>
+    <% if (!user.image.length) { %>
+    <div class="file-upload">
+      <label for="formFileMultiple">Add images</label>
+      <input type="file" id="formFileMultiple" name="image" class="custom-file-input">
+    </div>
+    <% } %>
+    <div>
+      <label for="location">Location</label>
+      <input type="location" id="location" name="user[location]" value="<%= user.location  %>">
+    </div>
+    <div>
+      <label for="price">Age</label>
+      <div class="input-group">
+        <input type="text" aria-label="Age" aria-describedby="age-label" id="age" name="user[age]" value="<%= user.age  %>">
+      </div>
+    </div>
+    <div>
+      <label for="firstname">First name</label>
+      <input type="firstname" id="firstname" name="user[firstname]" value="<%= user.firstname  %>">
+    </div>
+    <div>
+      <label for="lastname">Last name</label>
+      <input type="lastname" id="lastname" name="user[lastname]" value="<%= user.lastname  %>">
+    </div>
+    <% if (!user.image) { %>
+    <div>
+      <label for="formFileMultiple">Add images</label>
+      <input type="file" id="formFileMultiple" name="image">
+    </div>
+    <% } %>
+    <div>
+      <% user.image.forEach(function(img, i) { %>
+      <label for="image-<%=i%>">Do you want to delete your avatar?</label>
+      <div>
+        <img src="<%=img.thumbnail %>" alt="User's avatar thumbnail">
+        <input type="checkbox" id="image-<%=i%>" name="deleteImage[]" value="<%=img.filename%>">
+      </div>
+      <% })%>
+    </div>
+    <button type="submit">Update profile</button>
+  </div>
+</form>

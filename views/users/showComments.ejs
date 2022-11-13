@@ -1,0 +1,42 @@
+<%- include('../partials/profile')%>
+<div class="user-activity-headers">
+  <a href="/user/<%= user._id %>/page/1">
+    <div class="header">Posts</div>
+  </a>
+  <a href="/user/<%= user._id %>/comments/page/1">
+    <div class="active-header">Comments</div>
+  </a>
+  <a href="/user/<%= user._id %>/liked/page/1">
+    <div class="header">Liked posts</div>
+  </a>
+</div>
+<div class="user-activity">
+  <div class="comments-pagination">
+    <% for (let comment of comments) { %>
+    <div class="comments-wrapper">
+      <div>
+        <a href="/posts/<%= comment.post %>">
+          <div class="comment-content">
+            <p class="comment-text">
+              <%= comment.text %>
+            </p>
+            <p class="comment-date">
+              <%= comment.date.toUTCString().slice(0, -4) %>
+            </p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <% } %>
+  </div>
+</div>
+<div class="pagination">
+  <% if (page>1) { %>
+  <a href="/user/<%= user._id %>/comments/page/<%= page - 1 %>">
+
+    < Previous page</a>
+      <% } %>
+      <% if (page < comments.length) { %>
+      <a href="/user/<%= user._id %>/comments/page/<%= page + 1 %>">Next page ></a>
+      <% } %>
+</div>

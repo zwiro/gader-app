@@ -1,0 +1,89 @@
+<link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/css/postShow.css">
+<% layout('layouts/boilerplate')%>
+
+
+<div class="post-wrapper">
+  <div class="post-header">
+    <div class="post-author">
+      <% if (post.author.image.length) { %>
+      <a href="/user/<%= post.author._id %>">
+        <% post.author.image.forEach(function(img, i) { %>
+        <img src="<%= img.avatar %>" alt="Post author's image" id="user-avatar">
+        <% }) %>
+      </a>
+      <% } else { %>
+      <a href="/user/<%= post.author._id %>"><img src="/images/placeholder.svg" alt="Post author's avatar" id="user-avatar"></a>
+      <% } %>
+      <a href="/user/<%= post.author._id %>">
+        <%= post.author.username %>
+      </a>
+    </div>
+    <div class="post-date">
+      <a href="/posts/<%= post._id %>">
+        <%= post.date.toUTCString().slice(0, -4) %>
+      </a>
+    </div>
+  </div>
+  <div class="post-text">
+    <p>
+      <%= post.text %>
+    </p>
+  </div>
+  <% if (post.image.length) { %>
+  <div class="post-img"><img src="<%= post.image[0].url %>" id="post-image" alt="Post's image"></div>
+  <% } %>
+</div>
+
+
+<% if (currentUser && post.author.equals(currentUser._id)) { %>
+<div>
+  <div class="buttons">
+    <a href="/posts/<%= post._id %>/edit" id="edit-button">Edit post</a>
+    <form action="/posts/<%= post._id %>?_method=DELETE" method="post">
+      <button id="delete-button">Delete post</button>
+    </form>
+  </div>
+  <% } %>
+</div>
+<% if (currentUser) { %>
+<form action="/posts/<%=post._id%>/comments" method="POST" id="comment-form" novalidate>
+  <div>
+    <label for="text">Add new comment</label>
+    <textarea name="comment[text]" id="text" required></textarea>
+  </div>
+  <button>Submit</button>
+</form>
+<% } else { %>
+<p class="login-message"><a href="/login">Log In to write a comment</a></p>
+<% } %>
+<% if (post.comments.length) { %>
+<div class="comments-wrapper">
+  <% for(let comment of post.comments) { %>
+  <div>
+    <div>
+      <a href="/user/<%= comment.author._id %>" class="comment-author">
+        <%= comment.author.username %>
+      </a>
+      <div class="comment-content">
+        <div>
+          <p class="comment-text">
+            <%= comment.text %>
+          </p>
+          <p class="comment-date">
+            <%= comment.date.toUTCString().slice(0, -4) %>
+          </p>
+        </div>
+        <% if (currentUser && comment.author.equals(currentUser._id)) { %>
+        <form action="/posts/<%=post._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST">
+          <button id="delete-comment-button">Delete</button>
+        </form>
+        <% } %>
+      </div>
+    </div>
+  </div>
+  <% } %>
+</div>
+<% } %>
+
+<script src="/js/validateForms.js"></script>

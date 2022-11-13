@@ -1,0 +1,34 @@
+<link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/css/postShow.css">
+<link rel="stylesheet" href="/css/form.css">
+<% layout('layouts/boilerplate')%>
+
+
+<form action="/posts/<%= post._id %>?_method=PUT" method="post" novalidate enctype="multipart/form-data">
+  <div>
+    <div>
+      <label for="text">Text</label>
+      <textarea name="post[text]" id="text" type="text" required></textarea>
+    </div>
+    <% if (!post.image.length) { %>
+    <div>
+      <label for="formFileMultiple">Add images</label>
+      <input type="file" id="formFileMultiple" name="image" class="custom-file-input">
+    </div>
+    <% } %>
+    <div class="image-delete-form">
+
+      <% post.image.forEach(function(img, i) { %>
+      <label for="image-<%=i%>">Do you want to delete the image?</label>
+      <img src="<%=img.thumbnail %>" class="img-thumbnail" alt="Post's image thumbnail">
+      <div class="checkbox">
+        <input type="checkbox" id="image-<%=i%>" name="deleteImage[]" value="<%=img.filename%>">
+      </div>
+
+      <% })%>
+    </div>
+    <button type="submit">Update post</button>
+  </div>
+</form>
+
+<script src="/js/validateForms.js"></script>

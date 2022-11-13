@@ -1,0 +1,64 @@
+<%- include('../partials/profile')%>
+<div class="user-activity-headers">
+  <a href="/user/<%= user._id %>/page/1">
+    <div class="active-header">Posts</div>
+  </a>
+  <a href="/user/<%= user._id %>/comments/page/1">
+    <div class="header">Comments</div>
+  </a>
+  <a href="/user/<%= user._id %>/liked/page/1">
+    <div class="header">Liked posts</div>
+  </a>
+</div>
+<div class="user-activity">
+  <div class="posts-pagination">
+    <% for (let post of posts) { %>
+    <div class="post-wrapper">
+      <div class="post-header">
+        <div class="post-date">
+          <a href="/posts/<%= post._id %>">
+            <%= post.date.toUTCString().slice(0, -4) %>
+          </a>
+        </div>
+      </div>
+      <div class="post-text">
+        <p>
+          <%= post.text %>
+        </p>
+      </div>
+      <% if (post.image.length) { %>
+      <div class="post-img"><img src="<%= post.image[0].url %>" id="post-image" alt="Post's image"></div>
+      <% } %>
+      <div class="post-stats">
+        <ul>
+          <li><a href="/posts/<%= post._id %>">Comment (<%= post.comments.length %>)
+            </a></li>
+          <li>
+            <form action="/posts/<%=post._id%>?_method=PATCH" method="POST">
+              <% if (currentUser) {%>
+              <button id="like-button" <% if (currentUser.likes.includes(post._id)) {
+                                                    %> style="color:#D4D6B9" <% } %>>Like
+                (<%= post.likes %>)
+              </button>
+              <% } %>
+            </form>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <% } %>
+  </div>
+</div>
+<div class="pagination">
+  <% if (page>1) { %>
+  <a href="/user/<%= user._id %>/page/<%= page - 1 %>">
+
+    < Previous page</a>
+      <% } %>
+      <% if (page < posts.length) { %>
+      <a href="/user/<%= user._id %>/page/<%= page + 1 %>">Next page ></a>
+      <% } %>
+</div>
+
+
+<script src="/js/reload.js"></script>

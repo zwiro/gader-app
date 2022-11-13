@@ -1,0 +1,21 @@
+<link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/css/postShow.css">
+<link rel="stylesheet" href="/css/form.css">
+<% layout('layouts/boilerplate')%>
+
+
+<form action="/posts" method="post" enctype="multipart/form-data" novalidate>
+  <div>
+    <div>
+      <label for="text">Text</label>
+      <textarea name="post[text]" id="text" type="text" required></textarea>
+    </div>
+    <div class="file-upload">
+      <label for="formFileMultiple">Add images</label>
+      <input type="file" id="formFileMultiple" name="image" class="custom-file-input">
+    </div>
+    </di>
+    <button type="submit">Submit post</button>
+</form>
+
+<script src="/js/validateForms.js"></script>

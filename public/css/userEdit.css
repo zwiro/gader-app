@@ -1,0 +1,16 @@
+img {
+    width: 5rem;
+    height: 5rem;
+}
+
+input[type="checkbox"] {
+    background-color: #D4D6B9;
+    border-radius: 0.15rem;
+    height: 1rem;
+    width: 1rem;
+    cursor: pointer;
+}
+
+input[type="checkbox"]:checked {
+    background-image: url('/images/check-solid.svg');
+}

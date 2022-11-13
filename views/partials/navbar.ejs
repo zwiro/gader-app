@@ -1,0 +1,26 @@
+<link rel="stylesheet" href="/css/navbar.css">
+<nav>
+  <ul>
+    <li><a href="/"><img src="/images/logo.png" alt="Site's logo"></a></li>
+    <li><a href="/posts/page/1">Main page</a></li>
+    <li><a href="/posts/new">New post</a></li>
+    <div id="user-panel" class="searchbar">
+      <li class="searchbar">
+        <form class="searchform" action="/posts/page/1" method="get">
+          <input type="search" name="search" id="searchbar" placeholder="Search for...">
+        </form>
+      </li>
+      <% if(!currentUser) { %>
+      <li><a href="/login">Log In</a></li>
+      <li><a href="/register">Sign Up</a></li>
+      <% } else { %>
+      <li><a href="/user/<%= currentUser._id %>">
+          <%= currentUser.username %>
+        </a></li>
+      <li><a href="/logout">Log out</a></li>
+      <% } %>
+    </div>
+  </ul>
+</nav>
+
+<script src="/js/preventEmptySearch.js"></script>

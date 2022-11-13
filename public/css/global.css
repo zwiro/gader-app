@@ -1,0 +1,45 @@
+html {
+    font-size: 16px;
+    font-family: 'Nunito', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    min-width: 20rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #32213A;
+    color: white;
+}
+
+main {
+    animation: mainContentLoadAnimation 500ms ease-in-out;
+}
+
+.modal {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal img {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.stop-scrolling {
+    height: 100%;
+    overflow: hidden;
+}
+
+@keyframes mainContentLoadAnimation {
+    0% {
+        opacity: 0;
+    }
+}

@@ -1,0 +1,35 @@
+<link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/css/postShow.css">
+<link rel="stylesheet" href="/css/userShow.css">
+<% layout('layouts/boilerplate')%>
+
+<% if (currentUser && user._id.equals(currentUser._id)) { %>
+<a href="/user/<%=user._id%>/edit" id="user-edit-button">Edit profile</a>
+<% } %>
+<h1>
+  <%= user.username %> profile page
+</h1>
+<div class="user-info">
+  <% if (user.image.length) { %>
+  <% user.image.forEach(function(img, i) { %>
+  <img src="<%= img.avatar %>" alt="User's avatar" id="user-image">
+  <% }) %>
+  <% } else { %>
+  <img src="/images/placeholder.svg" alt="User's avatar" id="user-image">
+  <% } %>
+  <div class="user-data">
+    <div>
+      <%= user.username %>
+    </div>
+    <div class="user-name">
+      <%= user.firstname %>
+      <%= user.lastname %>
+    </div>
+    <p>
+      <%= user.location %>
+    </p>
+    <p>
+      <%= user.age %>
+    </p>
+  </div>
+</div>

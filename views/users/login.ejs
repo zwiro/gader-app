@@ -1,0 +1,20 @@
+<link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/css/postShow.css">
+<link rel="stylesheet" href="/css/form.css">
+<link rel="stylesheet" href="/css/login.css">
+<% layout('layouts/boilerplate')%>
+
+<form action="/login" method="POST" class="validated-form" novalidate>
+  <div>
+    <label for="username">Username</label>
+    <input type="text" id="username" name="username" required>
+  </div>
+
+  <div>
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" required>
+  </div>
+  <button>Log In</button>
+</form>
+
+<script src="/js/validateForms.js"></script>

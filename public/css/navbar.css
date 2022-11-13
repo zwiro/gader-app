@@ -1,0 +1,135 @@
+nav {
+    background-color: #383B53;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    transition: opacity 300ms ease-in-out;
+}
+
+.nav-animation {
+    animation: navLoadAnimation 500ms ease-in-out;
+}
+
+nav ul {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+#user-panel {
+    display: flex;
+    margin-left: auto;
+}
+
+nav img {
+    height: 3rem;
+    margin-block: 1rem;
+    padding-left: 2rem;
+    width: 11rem;
+}
+
+nav ul li a {
+    font-weight: 700;
+    text-decoration: none;
+    color: #D4D6B9;
+    margin-inline: 1rem;
+    padding-inline: 0.5rem;
+    border-inline: 1px solid #32213A;
+    position: relative;
+}
+
+nav ul li a:first-of-type {
+    margin-left: 0;
+}
+
+nav ul li a:after {
+    content: '';
+    background-color: #D4D6B9;
+    width: 0%;
+    height: 0.25rem;
+    position: absolute;
+    bottom: -1.8rem;
+    left: 0;
+    transition: width 500ms;
+}
+
+nav ul li a:hover:after {
+    width: 100%;
+}
+
+#burger-menu {
+    display: none;
+}
+
+.side-menu {
+    position: absolute;
+    right: 0;
+    background-color: #D4D6B9;
+    width: 10rem;
+    height: 100vh;
+    list-style: none;
+    animation: sideMenuAnimation 300ms ease-in-out forwards;
+}
+
+.side-menu-hiding {
+    animation: sideMenuHiding 300ms ease-in-out forwards;
+}
+
+.side-menu>* {
+    margin-block: 5rem;
+    margin-left: 2rem;
+    color: #32213A;
+    font-weight: 700;
+}
+
+.searchbar {
+    margin-left: auto;
+    margin-right: 1rem;
+}
+
+#searchbar {
+    background-color: #32213A;
+    border-radius: 0.5rem;
+    padding-inline: 0.5rem;
+    color: #D4D6B9;
+    width: 10rem;
+}
+
+@media (max-width: 800px) {
+    nav ul li {
+        display: none;
+    }
+
+    #burger-menu {
+        display: inline;
+    }
+}
+
+@keyframes sideMenuAnimation {
+    0% {
+        transform: translateX(200%)
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes sideMenuHiding {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(200%)
+    }
+}
+
+@keyframes navLoadAnimation {
+    0% {
+        transform: translateX(-200%);
+    }
+}
