@@ -46,7 +46,7 @@ h1 {
 }
 
 .post-date a {
-    font-size: 0.75rem;
+    font-size: 0.5rem;
     font-weight: 200;
 }
 
@@ -74,7 +74,7 @@ h1 {
 
 #post-image {
     height: 20rem;
-    max-width: 20rem;
+    max-width: 18rem;
 }
 
 .pagination {
@@ -110,6 +110,15 @@ h1 {
     main {
         margin: 2rem 4rem;
         width: 30rem;
+    }
+
+    #post-image {
+        max-width: 20rem;
+    }
+
+    .post-date a {
+        font-size: 0.75rem;
+        font-weight: 200;
     }
 }
 
