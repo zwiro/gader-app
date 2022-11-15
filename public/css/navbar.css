@@ -29,6 +29,12 @@ nav img {
     margin-block: 1rem;
     padding-left: 2rem;
     width: 11rem;
+    transition: transform 1000ms ease-in-out, filter 300ms ease-in-out;
+}
+
+nav img:hover {
+    transform: scale(1.1) rotateY(360deg);
+    filter: brightness(1.8);
 }
 
 nav ul li a {

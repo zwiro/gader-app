@@ -73,7 +73,8 @@ h1 {
 }
 
 #post-image {
-    max-height: 50rem;
+    height: 20rem;
+    max-width: 20rem;
 }
 
 .pagination {
@@ -92,7 +93,7 @@ h1 {
 }
 
 #post-image:hover {
-    cursor: pointer;
+    cursor: zoom-in;
 }
 
 #like-button:hover {

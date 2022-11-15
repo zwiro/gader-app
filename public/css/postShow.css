@@ -52,6 +52,7 @@ form textarea {
     margin-block: 1rem;
     width: 100%;
     min-width: 20rem;
+    background-color: #383B53;
 }
 
 #delete-comment-button {
